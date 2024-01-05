@@ -1,23 +1,24 @@
 import logo from './logo.svg';
 import './App.css';
+import {LoginSocialGoogle} from 'reactjs-social-login'
+import {GoogleLoginButton} from 'react-social-login-buttons'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <LoginSocialGoogle
+     client_id='307310959095-tq5rav54v62it0dup4ced749qkhia4r5.apps.googleusercontent.com'
+     discoveryDocs='claims_supported'
+     access_type='offline'
+     onResolve={({provider,data})=>{
+      console.log(provider,data)
+     }}
+     onReject={({error})=>{
+      console.log(error)
+     }}
+     >
+      <GoogleLoginButton />
+     </LoginSocialGoogle>
     </div>
   );
 }
