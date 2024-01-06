@@ -47,12 +47,24 @@ app.post('/signup', async (req, res) => {
   
       const token = jwt.sign({ userId: user._id }, 'CHIRAG57', { expiresIn: '20d' });
   
-      res.status(200).json({ token });
+      res.status(200).json({ user });
     } catch (error) {
       res.status(500).json({ message: 'Server error. Please try again later.' });
     }
   });
-
+  app.post('/social-login',async(req,res)=>{
+    const {email,name} = req.body
+    try {
+      const user = await User.findOne({ email });
+   
+      if (user) {
+        return res.status(401).json({ message: 'User ' });
+      }
+  
+    } catch (error) {
+      
+    }
+  })
 
   app.listen('8080',()=>{
     console.log(`runninig on port 8080`);
