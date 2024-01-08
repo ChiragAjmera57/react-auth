@@ -4,11 +4,11 @@ export const Dashboard = () => {
   const[user,setUser] = useState(null)
   useEffect(()=>{
     const authValue = JSON.parse(localStorage.getItem('token'));
-    setUser(authValue)
-    console.log(authValue)
+    authValue.user?setUser(authValue.user):setUser(authValue)
+    console.log(authValue.user)
   },[])
-  return (<>
-  
+  return (
+  <>
   <h1>Dashboard</h1>
   name : {user?.name}
   <br />

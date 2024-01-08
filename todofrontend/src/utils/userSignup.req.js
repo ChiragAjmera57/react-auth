@@ -12,6 +12,7 @@ export function signUpUser({name,email,mobile,password}) {
     axios
       .post(apiUrl, userData)
       .then((response) => {
+        console.log(response)
         // Handle success - You can navigate to another page or display a success message.
         resolve(response.data); // Resolve the promise with the response data
       })

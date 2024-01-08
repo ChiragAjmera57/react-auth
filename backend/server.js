@@ -1,10 +1,12 @@
 const express = require('express');
 const User = require('./modals/UserModal');
 const app = express()
+var cors = require('cors')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 const connectToMongoDB = require('./config/mongoose.config');
 app.use(express.json())
+app.use(cors())
 
 app.post('/signup', async (req, res) => {
     console.log(req.body)

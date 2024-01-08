@@ -4,11 +4,15 @@ import { json, useNavigate } from 'react-router-dom'
 import { userlogin } from '../utils/userlogin'
 import { AppContext } from '..'
 import {
-  LoginSocialGoogle
+  LoginSocialFacebook,
+  LoginSocialGoogle,
+  LoginSocialLinkedin
 } from 'reactjs-social-login'
 
 import {
-  GoogleLoginButton
+  FacebookLoginButton,
+  GoogleLoginButton,
+  LinkedInLoginButton
   
 } from 'react-social-login-buttons'
 export const Login = () => {
@@ -59,6 +63,33 @@ export const Login = () => {
           >
             <GoogleLoginButton />
           </LoginSocialGoogle>
+          <LoginSocialFacebook
+          appId={`888025742787827`}
+          fieldsProfile={
+            'id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender'
+          }
+          // onLogoutSuccess={onLogoutSuccess}
+          onResolve={({ provider, data }) => {
+            setAuthStorage({provider,data})
+          }}
+          onReject={err => {
+            console.log(err);
+          }}
+        >
+          <FacebookLoginButton />
+        </LoginSocialFacebook>
+        <LoginSocialLinkedin
+          client_id={`77wvscmxfqbk1m`}
+          client_secret={`1PBllkDFfXCXB1Dj`}
+          onResolve={({ provider, data }) => {
+            setAuthStorage({provider,data})
+          }}
+          onReject={(err) => {
+            console.log(err);
+          }}
+        >
+          <LinkedInLoginButton />
+        </LoginSocialLinkedin>
           </Stack>
             
         
