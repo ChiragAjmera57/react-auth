@@ -1,5 +1,5 @@
 import { Button, Stack, TextField } from '@mui/material'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { json, useNavigate } from 'react-router-dom'
 import { userlogin } from '../utils/userlogin'
 import { AppContext } from '..'
@@ -35,6 +35,12 @@ export const Login = () => {
       navigate("/");
     console.log(provider,data)
   }
+  useEffect(()=>{
+    const authValue = JSON.parse(localStorage.getItem('token'));
+    if(authValue){
+      navigate('/')
+    }
+  })
   return (
     <div className='login'>
         
@@ -79,8 +85,9 @@ export const Login = () => {
           <FacebookLoginButton />
         </LoginSocialFacebook>
         <LoginSocialLinkedin
-          client_id={`77wvscmxfqbk1m`}
-          client_secret={`1PBllkDFfXCXB1Dj`}
+          client_id={`865njcwreku8yn`}
+          redirect_uri='http://localhost:3001/'
+          client_secret={`JP8GcPgy9NlN4hOz`}
           onResolve={({ provider, data }) => {
             setAuthStorage({provider,data})
           }}
